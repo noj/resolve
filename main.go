@@ -10,13 +10,13 @@ func main() {
 	for _, host := range os.Args[1:] {
 		ips, err := net.LookupIP(host)
 		if err != nil {
-			fmt.Printf("%s error: %v\n", host, err)
+			fmt.Printf("%s: %v\n", host, err)
 			continue
 		}
 
 		for _, ip := range ips {
 			if ipv4 := ip.To4(); ipv4 != nil {
-				fmt.Printf("%s IPv4: %v\n", host, ipv4)
+				fmt.Printf("%s: %v\n", host, ipv4)
 			}
 		}
 	}
