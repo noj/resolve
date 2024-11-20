@@ -7,6 +7,6 @@ COPY . /app
 ARG TARGETOS TARGETARCH
 RUN GOOS=$TARGETOS GOARCH=$TARGETARCH CGO_ENABLED=0 go build -trimpath -ldflags '-w -s' -o resolve .
 
-FROM --platform=$BUILDPLATFORM alpine:latest AS runtime
+FROM --platform=$BUILDPLATFORM ubuntu:latest AS runtime
 COPY --from=build /app/resolve /bin/resolve
 ENTRYPOINT ["sh"]
